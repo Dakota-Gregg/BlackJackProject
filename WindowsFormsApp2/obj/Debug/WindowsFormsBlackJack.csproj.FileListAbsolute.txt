@@ -1,0 +1,10 @@
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsBlackJack.csprojAssemblyReference.cache
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsBlackJack.Form1.resources
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsBlackJack.csproj.GenerateResource.cache
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsBlackJack.csproj.CoreCompileInputs.cache
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
+C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb

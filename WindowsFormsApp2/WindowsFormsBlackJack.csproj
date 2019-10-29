@@ -51,6 +51,8 @@
     <Compile Include="BlackJack.Designer.cs">
       <DependentUpon>BlackJack.cs</DependentUpon>
     </Compile>
+    <Compile Include="Card.cs" />
+    <Compile Include="CardStore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BlackJack.resx">
