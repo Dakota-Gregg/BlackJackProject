@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsBlackJack
+namespace WindowsFormsApp2
 {
     class CardStore
     {
@@ -17,7 +17,7 @@ namespace WindowsFormsBlackJack
 
         }
 
-        public void DrawCard()
+        public Card DrawCard()
         {
             // creat a brand new unique card
             Card card = new Card();
@@ -32,7 +32,7 @@ namespace WindowsFormsBlackJack
             //print out this card's name as a test
             Console.WriteLine(card.GetName());
 
-            //best way to differentiate between players is to pass in a value and set that value as a key to a separate dictionary perhaps
+            return card;
         }
 
         // return a dictionary of recently used cards

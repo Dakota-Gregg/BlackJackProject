@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsBlackJack.Properties
+namespace WindowsFormsApp2.Properties
 {
 
 

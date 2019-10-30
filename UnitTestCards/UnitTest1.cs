@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WindowsFormsBlackJack;
+using WindowsFormsApp2;
 
 namespace UnitTestCards
 {

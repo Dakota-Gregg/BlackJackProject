@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsBlackJack
+namespace WindowsFormsApp2
 {
     public class Card
     {

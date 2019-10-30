@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsBlackJack
+﻿namespace WindowsFormsApp2
 {
     partial class Form1
     {
@@ -54,8 +54,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelPlayerScore = new System.Windows.Forms.Label();
+            this.labelDealerScore = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -278,24 +278,24 @@
             this.label4.TabIndex = 24;
             this.label4.Text = "Bet amount :";
             // 
-            // label5
+            // labelPlayerScore
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 180);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 13);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "Points in hand";
+            this.labelPlayerScore.AutoSize = true;
+            this.labelPlayerScore.Location = new System.Drawing.Point(26, 180);
+            this.labelPlayerScore.Name = "labelPlayerScore";
+            this.labelPlayerScore.Size = new System.Drawing.Size(74, 13);
+            this.labelPlayerScore.TabIndex = 25;
+            this.labelPlayerScore.Text = "Points in hand";
             // 
-            // label6
+            // labelDealerScore
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(209, 180);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Hidden dealer score";
-            this.label6.Visible = false;
+            this.labelDealerScore.AutoSize = true;
+            this.labelDealerScore.Location = new System.Drawing.Point(209, 180);
+            this.labelDealerScore.Name = "labelDealerScore";
+            this.labelDealerScore.Size = new System.Drawing.Size(102, 13);
+            this.labelDealerScore.TabIndex = 26;
+            this.labelDealerScore.Text = "Hidden dealer score";
+            this.labelDealerScore.Visible = false;
             // 
             // button3
             // 
@@ -322,8 +322,8 @@
             this.ClientSize = new System.Drawing.Size(323, 297);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelDealerScore);
+            this.Controls.Add(this.labelPlayerScore);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
@@ -349,6 +349,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -397,8 +398,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelPlayerScore;
+        private System.Windows.Forms.Label labelDealerScore;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
     }
