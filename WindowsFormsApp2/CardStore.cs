@@ -46,5 +46,12 @@ namespace WindowsFormsApp2
         {
             return cardList;
         }
+
+        public void reset()
+        {
+            cardList.Clear();
+            cardDictionary.Clear();
+
+        }
     }
 }

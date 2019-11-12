@@ -15,3 +15,7 @@ C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\UnitTestCards\bin\Debug
 C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\UnitTestCards\obj\Debug\UnitTestCards.csproj.CopyComplete
 C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\UnitTestCards\obj\Debug\UnitTestCards.dll
 C:\Users\User\Source\Repos\Dakota-Gregg\BlackJackProject\UnitTestCards\obj\Debug\UnitTestCards.pdb
+C:\Users\User\source\repos\BlackJackProject-master\UnitTestCards\obj\Debug\UnitTestCards.csprojAssemblyReference.cache
+C:\Users\User\source\repos\BlackJackProject-master\UnitTestCards\obj\Debug\UnitTestCards.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\BlackJackProject-master\UnitTestCards\obj\Debug\UnitTestCards.dll
+C:\Users\User\source\repos\BlackJackProject-master\UnitTestCards\obj\Debug\UnitTestCards.pdb

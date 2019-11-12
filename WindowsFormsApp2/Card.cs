@@ -11,12 +11,13 @@ namespace WindowsFormsApp2
         private int value;
         private int suit;
         private string name;
+        private string image;
 
         public Card()
         {
             Calculate();
             CardName();
-
+            Imager();
         }
 
         private void Calculate()
@@ -59,15 +60,15 @@ namespace WindowsFormsApp2
             switch (this.value)
             {
                 case 0: name += "Ace of "; break;
-                case 1: name += "Two of "; break;
-                case 2: name += "Three of "; break;
-                case 3: name += "Four of "; break;
-                case 4: name += "Five of "; break;
-                case 5: name += "Six of "; break;
-                case 6: name += "Seven of "; break;
-                case 7: name += "Eight of "; break;
-                case 8: name += "Nine of "; break;
-                case 9: name += "Ten of "; break;
+                case 1: name += "2 of "; break;
+                case 2: name += "3 of "; break;
+                case 3: name += "4 of "; break;
+                case 4: name += "5 of "; break;
+                case 5: name += "6 of "; break;
+                case 6: name += "7 of "; break;
+                case 7: name += "8 of "; break;
+                case 8: name += "9 of "; break;
+                case 9: name += "10 of "; break;
                 case 10: name += "Jack of "; break;
                 case 11: name += "Queen of "; break;
                 case 12: name += "King of "; break;
@@ -90,6 +91,23 @@ namespace WindowsFormsApp2
             {
                 this.name = "Joker";
             }
+        }
+
+        private void Imager()
+        {
+            string image = "";
+            image = this.name;
+
+            image = image.Replace(" ", "_");
+            image = image.ToLower();
+            image = @"..\..\card-BMPs\" + image + ".bmp";
+
+            this.image = image;
+        }
+
+        public string GetImage()
+        {
+            return this.image;
         }
 
         // return this card's name
