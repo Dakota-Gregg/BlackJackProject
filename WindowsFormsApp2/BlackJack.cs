@@ -14,11 +14,21 @@ namespace WindowsFormsApp2
 
     {
         int count=0;
-        int dcount = 0;
+        int payout = 2;
+        int insuranceflag = 0;
+        double blackjackpayout = 2.5;
+        double balance;
+        double pot = 0;
+        double bet = 0;
         CardStore deck = new CardStore();
         Hand player = new Hand();
         Hand dealer = new Hand();
         
+        public FormPlayGame RefToMenu { get; set; }
+
+        public User user { get; set; }
+
+
         public Form1()
         {
             InitializeComponent();
@@ -27,30 +37,70 @@ namespace WindowsFormsApp2
 
         private void buttonBet_Click(object sender, EventArgs e)
         {
-            double balance, bet;
-            
-            balance = Convert.ToDouble(lblBalance.Text);
-            bet = Convert.ToDouble(textBet.Text);
-
-            balance = balance - bet;
-            lblCurrentPot.Text = Convert.ToString(bet);
-            lblBalance.Text = Convert.ToString(balance);
-            //lblCurrentPot.Text = string.Format("{0:C}", bet);
-            //lblBalance.Text = string.Format("{0:C}", balance);
+            if (textBet.Text == "")
+                Console.WriteLine("Error: No Bet Entered");
+            else
+            {
+                try
+                {
+                    bet = Convert.ToDouble(textBet.Text);
+                    if (bet > balance)
+                        Console.WriteLine("Error: Not enough balance for bet");
+                    else
+                    {
+                        pot = pot + bet;
+                        balance = balance - bet;
+                        formatPot(pot);
+                        formatBalance(balance);
+                        textBet.Text = "";
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Error: Please input a valid bet amount");
+                }
+            }
 
         }
+        private void formatPot(double amount)
+        {
+            lblCurrentPot.Text = string.Format("{0:C}", amount);
+        }
 
+        private void formatBalance(double amount)
+        {
+            lblBalance.Text = string.Format("{0:C}", amount);
+        }
+        private void playerWin()
+        {
+            balance = balance + (pot * payout);
+            pot = 0;
+            formatBalance(balance);
+            formatPot(pot);
+        }
+        private void dealerWin()
+        {
+            pot = 0;
+            formatPot(pot);
+        }
+        private void playerBlackJack()
+        {
+            balance = balance + (pot * blackjackpayout);
+            pot = 0;
+            formatBalance(balance);
+            formatPot(pot);
+        }
         private void buttonNewHand_Click(object sender, EventArgs e)
         {
             
-            player.setScore(0);
-            while (player.getAces() > 0)
+            player.Score = 0;
+            while (player.Aces > 0)
             {
                 player.decreaseAces();
             }
 
-            dealer.setScore(0);
-            while (dealer.getAces() > 0)
+            dealer.Score = 0;
+            while (dealer.Aces > 0)
             {
                 dealer.decreaseAces();
             }
@@ -64,18 +114,19 @@ namespace WindowsFormsApp2
         private void buttonStay_Click(object sender, EventArgs e)
         {
             buttonHit.Enabled = false;
-            while (dealer.getScore() < 17)
+            buttonSave.Enabled = false;
+            while (dealer.Score < 17)
             {
                 dealer.DrawCard(deck);
 
-                if (dealer.getScore() > 21 && dealer.getAces() >= 1)
+                if (dealer.Score > 21 && dealer.Aces >= 1)
                 {
-                    dealer.setScore(dealer.getScore() - 10);
+                    dealer.Score = dealer.Score - 10;
                     dealer.decreaseAces();
                 }
             }
 
-            labelDealerScore.Text = dealer.getScore().ToString();
+            labelDealerScore.Text = dealer.Score.ToString();
 
             CalculateWinner();
         }
@@ -83,7 +134,7 @@ namespace WindowsFormsApp2
         private void buttonHit_Click(object sender, EventArgs e)
         {
 
-            if (player.getScore() >= 21)
+            if (player.Score >= 21)
             {
                 CalculateWinner();
                 return;
@@ -96,32 +147,31 @@ namespace WindowsFormsApp2
             PictureBox[] Pboxes = { boxP1, boxP2, boxP3, boxP4, boxP5, boxP6, boxP7, boxP8 };
             Pboxes[count].Visible = true;
             Pboxes[count].BringToFront();
-            Pboxes[count].ImageLocation = player.GetCardList()[count];
+            Pboxes[count].ImageLocation = player.CardList[count];
             Pboxes[count].Refresh();
             
-            if (dealer.getScore() < 17)
+            if (dealer.Score < 17)
             {
                 dealer.DrawCard(deck);
                 Dboxes[count].ImageLocation = @"../../card-BMPs/b2fv.bmp";
                 Dboxes[count].Visible = true;
                 Dboxes[count].BringToFront();
-                dcount++;
 
-                if (dealer.getScore() > 21 && dealer.getAces() >= 1)
+                if (dealer.Score > 21 && dealer.Aces >= 1)
                 {
-                    dealer.setScore(dealer.getScore() - 10);
+                    dealer.Score =dealer.Score - 10;
                     dealer.decreaseAces();
                 }
             }
             count++;
-            if (player.getScore() > 21 && player.getAces() >= 1)
+            if (player.Score > 21 && player.Aces >= 1)
             {
-                player.setScore(player.getScore() - 10);
+                player.Score =player.Score - 10;
                 player.decreaseAces();
             }
 
-            labelPlayerScore.Text = player.getScore().ToString();
-            labelDealerScore.Text = dealer.getScore().ToString();
+            labelPlayerScore.Text = player.Score.ToString();
+            labelDealerScore.Text = dealer.Score.ToString();
 
             
             
@@ -130,8 +180,48 @@ namespace WindowsFormsApp2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            NewHand();
-          
+            balance = user.Balance;
+            formatBalance(balance);
+            if (user.Player == null)
+            {
+                NewHand();
+            }
+            else
+            {
+                player = user.Player;
+                labelPlayerScore.Text = player.Score.ToString();
+                PictureBox[] Pboxes = { boxP1, boxP2, boxP3, boxP4, boxP5, boxP6, boxP7, boxP8 };
+                for (count = 0; count < 8; count++)
+                {
+                    try
+                    {
+                        Pboxes[count].ImageLocation = player.CardList[count];
+                        Pboxes[count].Visible = true;
+                        Pboxes[count].BringToFront();
+                        Pboxes[count].Refresh();
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                }
+
+                dealer = user.Dealer;
+                labelDealerScore.Text = dealer.Score.ToString();
+                PictureBox[] Dboxes = { boxD1, boxD2, boxD3, boxD4, boxD5, boxD6, boxD7, boxD8 };
+                int dealercards = 0;
+                foreach (string image in dealer.CardList)
+                {
+                    Dboxes[dealercards].ImageLocation = @"../../card-BMPs/b2fv.bmp";
+                    Dboxes[dealercards].Visible = true;
+                    Dboxes[dealercards].BringToFront();
+                    Dboxes[dealercards].Refresh();
+                    dealercards++;
+                }
+                Dboxes[0].ImageLocation = dealer.CardList[0];
+                Dboxes[0].Refresh();
+                
+            }
 
         }
 
@@ -140,6 +230,9 @@ namespace WindowsFormsApp2
             labelDealerScore.Visible = false;
             buttonNewHand.Enabled = false;
             buttonHit.Enabled = true;
+            buttonStay.Enabled = true;
+            buttonSave.Enabled = true;
+
             PictureBox[] Pboxes = { boxP1, boxP2, boxP3, boxP4, boxP5, boxP6, boxP7, boxP8 };
             PictureBox[] Dboxes = { boxD1, boxD2, boxD3, boxD4, boxD5, boxD6, boxD7, boxD8 };
             for (count = 0; count < 8; count++)
@@ -158,7 +251,7 @@ namespace WindowsFormsApp2
             {
                 player.DrawCard(deck);
                 Pboxes[count].Visible = true;
-                Pboxes[count].ImageLocation=player.GetCardList()[count];
+                Pboxes[count].ImageLocation=player.CardList[count];
                 Pboxes[count].Refresh();
 
                 //List<Card> cardList = player.GetCardList();
@@ -167,62 +260,98 @@ namespace WindowsFormsApp2
                 dealer.DrawCard(deck);
                 Dboxes[count].Visible = true;
             }
-            Dboxes[0].ImageLocation = dealer.GetCardList()[0];
+            Dboxes[0].ImageLocation = dealer.CardList[0];
             Dboxes[1].ImageLocation = @"../../card-BMPs/b2fv.bmp";
-            dcount = 2;
-            labelPlayerScore.Text = player.getScore().ToString();
-            labelDealerScore.Text = dealer.getScore().ToString();
+            labelPlayerScore.Text = player.Score.ToString();
+            labelDealerScore.Text = dealer.Score.ToString();
+            formatPot(pot);
+            formatBalance(balance);
         }
 
         private void CalculateWinner()
         {
             buttonNewHand.Enabled = true;
+            buttonStay.Enabled = false;
+            buttonHit.Enabled = false;
+
             PictureBox[] Dboxes = { boxD1, boxD2, boxD3, boxD4, boxD5, boxD6, boxD7, boxD8 };
-            for (int x=0;x<dcount;x++)
+            int x = 0;
+            foreach (string image in dealer.CardList)
             {
-                Dboxes[x].ImageLocation = dealer.GetCardList()[x];
+                Dboxes[x].ImageLocation = image;
+                Dboxes[x].Visible = true;
                 Dboxes[x].Refresh();
                 Dboxes[x].BringToFront();
+                x++;
             }
-            if (player.getScore() == 21)
+            if (dealer.Score==21 && insuranceflag == 1)
             {
+                user.Win++;
                 Console.WriteLine("Player Wins!");
+                MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Wins!");
+                playerWin();
             }
-            else if(player.getScore() > 21)
+            else if (dealer.Score!=21 && insuranceflag == 1)
             {
+                user.Lose++;
                 Console.WriteLine("Dealers Wins!");
+                MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Loses!");
+                dealerWin();
             }
-            else if(dealer.getScore() == 21)
+            else if (player.Score == 21)
             {
-                Console.WriteLine("Dealers Wins!");
-            }
-            else if (dealer.getScore() > 21)
-            {
+                user.Win++;
                 Console.WriteLine("Player Wins!");
+                MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Wins!");
+                if (count == 2)
+                    playerBlackJack();
+                else
+                    playerWin();
+            }
+            else if(player.Score > 21)
+            {
+                user.Lose++;
+                Console.WriteLine("Dealers Wins!");
+                MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Loses!");
+                dealerWin();
+            }
+            else if(dealer.Score == 21)
+            {
+                user.Lose++;
+                Console.WriteLine("Dealers Wins!");
+                MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Loses!");
+                dealerWin();
+            }
+            else if (dealer.Score > 21)
+            {
+                user.Win++;
+                Console.WriteLine("Player Wins!");
+                MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Wins!");
+                playerWin();
             }
             else
             {
-                if(player.getScore() > dealer.getScore())
+                if(player.Score > dealer.Score)
                 {
+                    user.Win++;
                     Console.WriteLine("Player Wins!");
+                    MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Wins!");
                 }
-                else if (player.getScore() == dealer.getScore())
+                else if (player.Score == dealer.Score)
                 {
                     dealer.DrawCard(deck);
                     CalculateWinner();
                 }
                 else
                 {
+                    user.Lose++;
                     Console.WriteLine("Dealer Wins!");
+                    MessageBox.Show("Wins: " + user.Win + "    Lose: " + user.Lose, "Player Loses!");
+                    dealerWin();
                 }
             }
 
             labelDealerScore.Visible = true;
-        }
-
-        private void boxP2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -230,11 +359,47 @@ namespace WindowsFormsApp2
             
 
             System.IO.File.WriteAllText(@"../../Test.txt",lblBalance.Text);
+            user.Player = player;
+            user.Dealer = dealer;
+            user.Balance = balance;
+
+            this.RefToMenu.LoadText();
+            this.RefToMenu.Show();
+            this.Close();
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
             lblBalance.Text=System.IO.File.ReadAllText(@"../../Test.txt");
+        }
+
+        private void buttonInsurance_Click(object sender, EventArgs e)
+        {
+            insuranceflag = 1;
+            if (textBet.Text == "")
+                Console.WriteLine("Error: No Bet Entered");
+            else
+            {
+                try
+                {
+                    bet = Convert.ToDouble(textBet.Text);
+                    if (bet > balance)
+                        Console.WriteLine("Error: Not enough balance for insurance bet");
+                    else
+                    {
+                        pot = pot + bet;
+                        balance = balance - bet;
+                        formatPot(pot);
+                        formatBalance(balance);
+                        textBet.Text = "";
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Error: Please input a valid bet amount");
+                }
+            }
+                CalculateWinner();
         }
     }
 }

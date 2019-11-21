@@ -63,9 +63,7 @@
             this.lblPot = new System.Windows.Forms.Label();
             this.lblCurrentPot = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonLoad = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.buttonInsurance = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.boxD2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boxD1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.boxD3)).BeginInit();
@@ -260,7 +258,6 @@
             this.boxP2.TabIndex = 11;
             this.boxP2.TabStop = false;
             this.boxP2.Visible = false;
-            this.boxP2.Click += new System.EventHandler(this.boxP2_Click);
             // 
             // labelPlayer
             // 
@@ -336,7 +333,7 @@
             // 
             // buttonBet
             // 
-            this.buttonBet.Location = new System.Drawing.Point(339, 280);
+            this.buttonBet.Location = new System.Drawing.Point(270, 280);
             this.buttonBet.Name = "buttonBet";
             this.buttonBet.Size = new System.Drawing.Size(57, 27);
             this.buttonBet.TabIndex = 28;
@@ -373,7 +370,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(270, 356);
+            this.buttonSave.Location = new System.Drawing.Point(321, 377);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 32;
@@ -381,42 +378,23 @@
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // buttonLoad
+            // buttonInsurance
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(380, 356);
-            this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(75, 23);
-            this.buttonLoad.TabIndex = 33;
-            this.buttonLoad.Text = "Load";
-            this.buttonLoad.UseVisualStyleBackColor = true;
-            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(240, 91);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(13, 13);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "$";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(240, 181);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 13);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "$";
+            this.buttonInsurance.Location = new System.Drawing.Point(388, 280);
+            this.buttonInsurance.Name = "buttonInsurance";
+            this.buttonInsurance.Size = new System.Drawing.Size(62, 27);
+            this.buttonInsurance.TabIndex = 33;
+            this.buttonInsurance.Text = "Insurance";
+            this.buttonInsurance.UseVisualStyleBackColor = true;
+            this.buttonInsurance.Click += new System.EventHandler(this.buttonInsurance_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(764, 438);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonLoad);
+            this.ControlBox = false;
+            this.Controls.Add(this.buttonInsurance);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.boxD8);
             this.Controls.Add(this.boxD7);
@@ -448,6 +426,8 @@
             this.Controls.Add(this.buttonStay);
             this.Controls.Add(this.buttonHit);
             this.Controls.Add(this.boxP1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -507,9 +487,7 @@
         private System.Windows.Forms.Label lblPot;
         private System.Windows.Forms.Label lblCurrentPot;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonInsurance;
     }
 }
 

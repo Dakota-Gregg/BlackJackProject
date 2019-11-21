@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp2
 {
-    class Hand
+    public class Hand
     {
         private int score;
         private int aceCount;
@@ -18,22 +18,41 @@ namespace WindowsFormsApp2
             this.aceCount = 0;
         }
 
-        public int getScore()
+        public int Score
         {
-            return this.score;
+            get
+            {
+                return this.score;
+            }
+            set
+            {
+                this.score = value;
+            }
         }
 
-        public void setScore(int value)
+        public int Aces
         {
-            this.score = value;
+            get
+            {
+                return this.aceCount;
+            }
+            set
+            {
+                this.aceCount = value;
+            }
         }
 
-        public int getAces()
+        public List<string> CardList
         {
-            return this.aceCount;
+            get
+            {
+                return this.cardList;
+            }
+            set
+            {
+                this.cardList = value;
+            }
         }
-
-       
 
         public void decreaseAces()
         {
@@ -64,11 +83,6 @@ namespace WindowsFormsApp2
           
             this.score += value;
 
-        }
-        public List<string> GetCardList()
-        {
-            
-            return this.cardList;
         }
         public void reset()
         {

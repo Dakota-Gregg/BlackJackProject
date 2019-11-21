@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp2
 {
-    class CardStore
+    public class CardStore
     {
         //These are the total cards drawn thus far (can't differentiate between hand
         private static List<Card> cardList = new List<Card>();
